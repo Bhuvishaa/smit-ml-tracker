@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smit's ML Study Garden</title>
+<style>
+:root{
+ --ink:#302b3d;--muted:#777187;--pink:#f6b8cb;--rose:#e985a8;--lav:#c9bdf5;
+ --mint:#b9e7d5;--cream:#fffaf6;--card:#fff;--line:#eee6ed;--purple:#7665b5;
+ --shadow:0 12px 35px rgba(81,55,91,.09)
+}
+*{box-sizing:border-box} body{margin:0;background:linear-gradient(135deg,#fff6f8,#f8f5ff 55%,#f1fbf7);color:var(--ink);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+header{padding:34px 5vw 24px;background:radial-gradient(circle at 85% 10%,#fff 0 8%,transparent 9%),linear-gradient(120deg,#ffe5ed,#eee9ff 62%,#e3f8ef);border-bottom:1px solid #f1e5ed}
+.hero{max-width:1400px;margin:auto;display:flex;justify-content:space-between;gap:24px;align-items:center}.eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:11px;font-weight:800;color:#986c8c}
+h1{font-size:clamp(30px,5vw,52px);line-height:1.05;margin:8px 0;color:#473650;letter-spacing:-.04em} .subtitle{color:#71677a;margin:10px 0 0}.hero-art{font-size:76px;filter:drop-shadow(0 8px 8px #b88ba533)}
+.wrap{max-width:1400px;margin:24px auto;padding:0 4vw 60px}.meta{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 20px}.pill{background:#fff;border:1px solid var(--line);border-radius:99px;padding:7px 13px;font-size:12px;color:#665b70;box-shadow:0 3px 10px #60466a0a}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:20px}.stat,.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}.stat{padding:17px}.stat small{color:var(--muted);font-weight:700}.stat strong{display:block;font-size:28px;margin-top:5px;color:#59486b}.bar{height:8px;background:#f1edf4;border-radius:99px;overflow:hidden;margin-top:10px}.bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--rose),var(--lav),var(--mint));border-radius:99px;transition:width .25s}
+.panel{padding:19px;margin:18px 0}.panel h2{font-size:18px;margin:0 0 13px}.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.toolbar input,.toolbar select,input,textarea,select{font:inherit;border:1px solid #e8deea;border-radius:10px;padding:9px 11px;background:#fff;color:var(--ink)}.toolbar input{min-width:220px;flex:1}
+button{font:inherit;border:0;border-radius:10px;padding:9px 13px;background:#7968b4;color:white;font-weight:700;cursor:pointer}button.secondary{background:#f3edf7;color:#66557d}button.soft{background:#fff0f4;color:#a34f73}button:hover{filter:brightness(.97)}
+.unit{margin:18px 0;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 6px 20px #61456c0a}.unit-head{padding:14px 17px;background:linear-gradient(90deg,#fff2f6,#f5f1ff);display:flex;justify-content:space-between;align-items:center;gap:12px}.unit-head h3{margin:0;font-size:16px}.unit-head small{color:var(--muted)}
+.table-scroll{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:1050px;font-size:13px}th,td{padding:10px 9px;border-bottom:1px solid #f1edf1;text-align:left;vertical-align:middle}th{background:#fffcfd;color:#766b7e;font-size:11px;text-transform:uppercase;letter-spacing:.05em;position:sticky;top:0;z-index:1}td:first-child{font-weight:650;min-width:220px}.topic-sub{display:block;font-size:11px;color:#9a91a0;font-weight:400}.check{text-align:center;width:80px}.check input{accent-color:#a77bb8;width:17px;height:17px;cursor:pointer}.priority,.status{font-size:11px;border-radius:99px;padding:4px 8px;display:inline-block;white-space:nowrap;font-weight:750}.p-very-high{background:#ffe4e9;color:#a33d60}.p-high{background:#fff0d9;color:#95621a}.p-medium{background:#eeeaff;color:#6855a4}.p-low{background:#e8f6ee;color:#39785a}
+.status{border:1px solid #e8dfeb;background:#faf8fc;color:#6f6478}.status-select{padding:6px 7px;font-size:11px;max-width:140px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}.entry{display:flex;gap:8px;margin:9px 0}.entry input{flex:1;min-width:0}.items{padding-left:20px;margin:8px 0;color:#5e5668}.items li{padding:4px 0}.empty{color:#9a91a0;font-size:13px;font-style:italic}.weak{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.weak label{font-size:13px}.topic-flag{accent-color:#b36f94}
+footer{text-align:center;color:#93899a;font-size:12px;margin-top:26px}
+@media(max-width:800px){.stats{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}.hero-art{font-size:55px}}@media(max-width:480px){.stats{grid-template-columns:1fr 1fr}.stat{padding:13px}.stat strong{font-size:23px}.hero{align-items:flex-start}.hero-art{font-size:42px}}
+</style>
+</head>
+<body>
+<header><div class="hero"><div><div class="eyebrow">a little progress, every day ✿</div><h1>Smit's ML<br>Study Garden</h1><p class="subtitle">Machine Learning • B.Tech CSE • Semester V</p></div><div class="hero-art" aria-hidden="true">🌷📚</div></div></header>
+<main class="wrap">
+ <div class="meta"><span class="pill">📅 Exam: 18 November 2026</span><span class="pill">📝 50 marks · 3 hours</span><span class="pill">🌱 Starting point: Zero</span><span class="pill">Course: 24CS01TH0501</span></div>
+ <section class="stats">
+  <div class="stat"><small>OVERALL COMPLETION</small><strong id="overall">0%</strong><div class="bar"><span id="overallBar"></span></div></div>
+  <div class="stat"><small>TOPICS COMPLETED</small><strong id="completed">0 / 0</strong><small>Only confirmed completions count</small></div>
+  <div class="stat"><small>TOPICS IN PROGRESS</small><strong id="learning">0</strong><small>Currently learning or practising</small></div>
+  <div class="stat"><small>NEEDS REVISION</small><strong id="revisionCount">0</strong><small>Flag topics to revisit</small></div>
+ </section>
+ <section class="panel"><div class="section-head"><h2>🌼 Your syllabus tracker</h2><button class="secondary" id="reset">Reset tracker</button></div>
+ <p class="empty">Tick each skill area only after working on it. Change a topic's status yourself; a topic is never auto-marked Completed.</p>
+ <div class="toolbar"><input id="search" placeholder="🔎 Search any topic..."><select id="unitFilter"><option value="all">All units</option></select><select id="statusFilter"><option value="all">All statuses</option><option>Not Started</option><option>Learning</option><option>Practiced</option><option>Completed</option><option>Needs Revision</option></select></div>
+ <div id="tracker"></div></section>
+ <section class="panel"><h2>📊 Unit-wise progress</h2><div id="unitProgress"></div></section>
+ <section class="two-col">
+  <div class="panel"><h2>🧮 Pending numerical problems</h2><p class="empty">Add a specific question or exercise to your to-do list.</p><div class="entry"><input id="numericalInput" placeholder="e.g. Calculate precision and recall..."><button id="addNumerical">Add</button></div><ul class="items" id="numericals"></ul></div>
+  <div class="panel"><h2>🧠 Important formulas</h2><p class="empty">Build your personal formula sheet as you study.</p><div class="entry"><input id="formulaInput" placeholder="Formula name / expression"><button id="addFormula">Add</button></div><ul class="items" id="formulas"></ul></div>
+ </section>
+ <section class="panel"><h2>💜 Difficult topics & weak areas</h2><p class="empty">Mark topics you find difficult. They will appear here for focused revision.</p><div id="weakList" class="weak"></div></section>
+ <footer>Made with love & tiny steps for Smit ✨ · Your progress is saved in this browser.</footer>
+</main>
+<script>
+const units = [
+{ name:"UNIT I – Foundation of Machine Learning", topics:[
+["Supervised Learning","Very High","Easy"],["Unsupervised Learning","Very High","Easy"],["Semi-Supervised Learning","High","Medium"],["Reinforcement Learning","High","Medium"],["Self-Supervised Learning","Medium","Medium"],["Concept Learning Task","High","Medium"],["General-to-Specific Ordering of Hypotheses","High","Hard"],["Version Spaces","Very High","Hard"],["Inductive Bias","Medium","Medium"],["Accuracy","Very High","Easy"],["Precision","Very High","Medium"],["Recall","Very High","Medium"],["F1-Score","Very High","Medium"],["ROC/AUC","High","Medium"],["MSE","High","Easy"],["MAE","High","Easy"],["RMSE","High","Easy"]]},
+{ name:"UNIT II – Parametric & Generative Learning", topics:[
+["Bayesian Estimation","Very High","Hard"],["Maximum A Posteriori (MAP)","Very High","Hard"],["Conjugate Priors","High","Hard"],["Naive Bayes","Very High","Medium"],["Conditional Independence Assumptions","High","Medium"],["Linear Discriminant Analysis (LDA)","High","Hard"],["Quadratic Discriminant Analysis (QDA)","High","Hard"],["Latent Variables","Medium","Medium"],["Semi-Parametric Methods","Low","Medium"],["Gaussian Mixture Models (GMM)","Very High","Hard"],["Expectation-Maximization (EM) Algorithm","Very High","Hard"]]},
+{ name:"UNIT III – Non-Parametric & Discriminative Models", topics:[
+["Parzen Windows","High","Medium"],["Kernel Density Estimation","Very High","Medium"],["K-Nearest Neighbors (K-NN)","Very High","Easy"],["Curse of Dimensionality","High","Medium"],["Logistic Regression","Very High","Medium"],["Decision Trees","Very High","Medium"],["Entropy","Very High","Medium"],["Information Gain","Very High","Hard"],["Pruning","High","Medium"],["Handling Categorical Data","Medium","Easy"],["Feature Engineering","High","Medium"],["Feature Selection","High","Medium"],["Principal Component Analysis (PCA)","Very High","Hard"]]},
+{ name:"UNIT IV – High-Dimensional Space Optimization and Ensemble Learning", topics:[
+["Maximal Margin Classifier","High","Medium"],["Hard Margin SVM","Very High","Hard"],["Soft Margin SVM","Very High","Hard"],["Kernel Trick","Very High","Hard"],["RBF Kernel","High","Medium"],["Polynomial Kernel","High","Medium"],["Bias-Variance Tradeoff","Very High","Medium"],["Cross-Validation","Very High","Medium"],["Bootstrapping","High","Medium"],["Hypothesis Testing for Model Comparison","Medium","Hard"],["Bagging","High","Medium"],["Random Forests","Very High","Medium"],["AdaBoost","High","Hard"],["Gradient Boosting","High","Hard"],["XGBoost","High","Hard"]]},
+{ name:"UNIT V – Specialized Learning Paradigms", topics:[
+["Hidden Markov Models (HMMs)","Very High","Hard"],["Probability Over Sequences","High","Hard"],["K-Means Clustering","Very High","Easy"],["Hierarchical Clustering","High","Medium"],["Single Linkage","Medium","Easy"],["Complete Linkage","Medium","Easy"],["Average Linkage","Medium","Easy"]]}
+];
+const statuses=["Not Started","Learning","Practiced","Completed","Needs Revision"];
+const key=t=>t.replace(/[^a-z0-9]/gi,"_");
+let data=JSON.parse(localStorage.getItem("smitMLTracker")||"{}");
+let numericals=JSON.parse(localStorage.getItem("smitMLNumericals")||"[]");
+let formulas=JSON.parse(localStorage.getItem("smitMLFormulas")||"[]");
+function get(t){return data[key(t)]||{checks:[false,false,false,false,false],status:"Not Started",weak:false}}
+function save(){localStorage.setItem("smitMLTracker",JSON.stringify(data));localStorage.setItem("smitMLNumericals",JSON.stringify(numericals));localStorage.setItem("smitMLFormulas",JSON.stringify(formulas));renderStats();renderLists()}
+function allTopics(){return units.flatMap((u,i)=>u.topics.map(t=>({name:t[0],priority:t[1],difficulty:t[2],unit:i})))}
+function render(){
+ const term=document.getElementById("search").value.toLowerCase(),uf=document.getElementById("unitFilter").value,sf=document.getElementById("statusFilter").value;
+ const root=document.getElementById("tracker");root.innerHTML="";
+ units.forEach((u,i)=>{
+  const rows=u.topics.filter(t=>{let d=get(t[0]);return (uf==="all"||uf===String(i))&&(sf==="all"||sf===d.status)&&t[0].toLowerCase().includes(term)});
+  if(!rows.length)return;
+  const section=document.createElement("section");section.className="unit";
+  const done=u.topics.filter(t=>get(t[0]).status==="Completed").length;
+  section.innerHTML=`<div class="unit-head"><h3>${u.name}</h3><small>${done}/${u.topics.length} completed</small></div><div class="table-scroll"><table><thead><tr><th>Topic</th><th>Priority</th><th>Difficulty</th><th class="check">Theory</th><th class="check">Formula</th><th class="check">Numerical<br>Practice</th><th class="check">Quiz</th><th class="check">Revision</th><th>Status</th><th>Weak?</th></tr></thead><tbody></tbody></table></div>`;
+  const body=section.querySelector("tbody");
+  rows.forEach(t=>{
+   const d=get(t[0]),tr=document.createElement("tr");
+   tr.innerHTML=`<td>${t[0]}</td><td><span class="priority p-${t[1].toLowerCase().replace(" ","-")}">${t[1]}</span></td><td>${t[2]}</td>`;
+   d.checks.forEach((v,j)=>{const td=document.createElement("td");td.className="check";const cb=document.createElement("input");cb.type="checkbox";cb.checked=v;cb.title=["Theory","Formula","Numerical Practice","Quiz","Revision"][j];cb.addEventListener("change",()=>{d.checks[j]=cb.checked;data[key(t[0])]=d;save()});td.append(cb);tr.append(td)});
+   const statusTd=document.createElement("td"),sel=document.createElement("select");sel.className="status-select";
+   statuses.forEach(s=>{let o=document.createElement("option");o.textContent=s;o.value=s;sel.append(o)});sel.value=d.status;sel.addEventListener("change",()=>{d.status=sel.value;data[key(t[0])]=d;save();render()});statusTd.append(sel);tr.append(statusTd);
+   const weakTd=document.createElement("td"),weak=document.createElement("input");weak.type="checkbox";weak.className="topic-flag";weak.checked=d.weak;weak.title="Mark as a difficult topic";weak.addEventListener("change",()=>{d.weak=weak.checked;data[key(t[0])]=d;save()});weakTd.append(weak);tr.append(weakTd);
+   body.append(tr);
+  });root.append(section);
+ });
+ renderStats();renderUnitProgress();renderWeak();
+}
+function renderStats(){
+ const topics=allTopics(),done=topics.filter(t=>get(t.name).status==="Completed").length,learning=topics.filter(t=>["Learning","Practiced"].includes(get(t.name).status)).length,rev=topics.filter(t=>get(t.name).status==="Needs Revision").length,pct=Math.round(done/topics.length*100);
+ document.getElementById("overall").textContent=pct+"%";document.getElementById("overallBar").style.width=pct+"%";document.getElementById("completed").textContent=done+" / "+topics.length;document.getElementById("learning").textContent=learning;document.getElementById("revisionCount").textContent=rev;
+}
+function renderUnitProgress(){document.getElementById("unitProgress").innerHTML=units.map(u=>{let done=u.topics.filter(t=>get(t[0]).status==="Completed").length,p=Math.round(done/u.topics.length*100);return `<div style="margin:12px 0"><div class="section-head"><strong style="font-size:13px">${u.name}</strong><small>${p}% · ${done}/${u.topics.length}</small></div><div class="bar"><span style="width:${p}%"></span></div></div>`}).join("")}
+function renderWeak(){let w=allTopics().filter(t=>get(t.name).weak);document.getElementById("weakList").innerHTML=w.length?w.map(t=>`<span class="pill">${t.name} · Unit ${t.unit+1}</span>`).join(""):'<span class="empty">No difficult topics marked yet — you’ve got this! 🌸</span>'}
+function renderLists(){
+ const draw=(arr,id,remove)=>{const ul=document.getElementById(id);ul.innerHTML="";if(!arr.length){ul.innerHTML='<li class="empty">Nothing added yet.</li>';return}arr.forEach((v,i)=>{let li=document.createElement("li");li.textContent=v+" ";let b=document.createElement("button");b.textContent="×";b.className="soft";b.style.padding="2px 8px";b.setAttribute("aria-label","Remove item");b.onclick=()=>{remove(i);save()};li.append(b);ul.append(li)})};
+ draw(numericals,"numericals",i=>numericals.splice(i,1));draw(formulas,"formulas",i=>formulas.splice(i,1));
+}
+document.getElementById("addNumerical").onclick=()=>{let v=document.getElementById("numericalInput").value.trim();if(v){numericals.push(v);document.getElementById("numericalInput").value="";save()}};
+document.getElementById("addFormula").onclick=()=>{let v=document.getElementById("formulaInput").value.trim();if(v){formulas.push(v);document.getElementById("formulaInput").value="";save()}};
+document.getElementById("search").oninput=render;document.getElementById("statusFilter").onchange=render;
+document.getElementById("unitFilter").innerHTML+='<option value="0">Unit I</option><option value="1">Unit II</option><option value="2">Unit III</option><option value="3">Unit IV</option><option value="4">Unit V</option>';document.getElementById("unitFilter").onchange=render;
+document.getElementById("reset").onclick=()=>{if(confirm("Reset all topic progress, formulas and pending numericals? This cannot be undone.")){data={};numericals=[];formulas=[];save();render()}};
+render();renderLists();
+</script>
+</body></html>
